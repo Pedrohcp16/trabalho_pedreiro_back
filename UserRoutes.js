@@ -1,8 +1,11 @@
 const express = require('express');
-const { registerUser } = require('../controllers/userController');
 const router = express.Router();
+const userController = require('../controllers/userController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/register', registerUser);
+router.post('/register', userController.registerUser);
+router.post('/login', userController.loginUser);
+router.put('/update/:id', authMiddleware, userController.updateUser);
+router.delete('/delete/:id', authMiddleware, userController.deleteUser);
 
-// Adicione outras rotas (login, editar, deletar)...
 module.exports = router;
