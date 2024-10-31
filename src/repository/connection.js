@@ -1,10 +1,12 @@
 import mysql from 'mysql2/promise';
 
-mysql.createConnection ({
+let con = await mysql.createConnection ({
     host: 'localhost',
-    user: 'your_username',
-    password: 'your_password',
-    database: 'your_database_name'
+    user: 'root',
+    password: 'user123',
+    database: 'pedreiro'
 })
 
 console.log('conexão criada!');
+
+export default con;

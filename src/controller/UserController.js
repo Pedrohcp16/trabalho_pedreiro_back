@@ -10,7 +10,7 @@ exports.registerUser = (req, res) => {
     const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
     db.query(query, [name, email, hash], (err, result) => {
       if (err) return res.status(500).json({ message: "Erro ao registrar" });
-      res.status(201).json({ message: "Usuário registrado!" });
+      res.status(201).json({ message: "Usuário registrado!", userId: result.insertId });
     });
   });
 };
