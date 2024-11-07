@@ -1,12 +1,14 @@
-import './utilis/global.js';
-
-import 'dotenv/config.js';
+import 'dotenv/config';
+import express from 'express';
 import cors from 'cors';
+
+import adicionarRotas from './rotas.js';
 
 const servidor = express();
 servidor.use(cors());
 servidor.use(express.json());
 
+adicionarRotas(servidor);
 
-const PORT = process.env.PORT;
-servidor.listen(PORT, () => console.log(`--> API subiu na porta ${PORT}`));
+const PORTA = process.env.PORT || 3000;
+servidor.listen(PORTA, () => console.log(`--> API subiu na porta ${PORTA}`));
